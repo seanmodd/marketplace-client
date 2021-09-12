@@ -50,7 +50,7 @@ const BookingCard = ({ hotel, session, orderedBy }) => {
                   {diffDays(hotel.from, hotel.to) <= 1 ? " day" : " days"}
                 </span>
               </p>
-              <p className="card-text">{hotel.bed} bed</p>
+              <p className="card-text">{hotel.bed} seats</p>
               <p className="card-text">
                 Available from {new Date(hotel.from).toLocaleDateString()}
               </p>

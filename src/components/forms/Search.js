@@ -52,7 +52,7 @@ const Search = () => {
         onChange={(value) => setBed(value)}
         className="w-100"
         size="large"
-        placeholder="Number of beds"
+        placeholder="Number of seats"
       >
         <Option key={1}>{1}</Option>
         <Option key={2}>{2}</Option>

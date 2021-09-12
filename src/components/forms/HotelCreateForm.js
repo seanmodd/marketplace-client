@@ -75,7 +75,7 @@ const HotelCreateForm = ({
           onChange={(value) => setValues({ ...values, bed: value })}
           className="w-100 m-2"
           size="large"
-          placeholder="Number of beds"
+          placeholder="Number of seats"
         >
           <Option key={1}>{1}</Option>
           <Option key={2}>{2}</Option>

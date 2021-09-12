@@ -77,7 +77,7 @@ const HotelEditForm = ({
           onChange={(value) => setValues({ ...values, bed: value })}
           className="w-100 m-2"
           size="large"
-          placeholder="Number of beds"
+          placeholder="Number of seats"
           value={bed}
         >
           <Option key={1}>{1}</Option>
