@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useStore } from "react-redux";
+// import { useStore } from "react-redux";
 import { read, diffDays, isAlreadyBooked } from "../actions/hotel";
 import { getSessionId } from "../actions/stripe";
 import moment from "moment";
@@ -16,7 +16,7 @@ const ViewHotel = ({ match, history }) => {
 
   useEffect(() => {
     loadSellerHotel();
-  }, []);
+  }, [loadSellerHotel]);
 
   useEffect(() => {
     if (auth && auth.token) {
@@ -25,7 +25,7 @@ const ViewHotel = ({ match, history }) => {
         if (res.data.ok) setAlreadyBooked(true);
       });
     }
-  }, []);
+  }, [auth, match.params.hotelId]);
 
   const loadSellerHotel = async () => {
     let res = await read(match.params.hotelId);

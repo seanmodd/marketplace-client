@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { stripeSuccessRequest } from "../actions/stripe";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -22,7 +22,7 @@ const StripeCancel = ({ match, history }) => {
         history.push("/stripe/cancel");
       }
     });
-  }, [match.params.hotelId]);
+  }, [history, token, match.params.hotelId]);
 
   return (
     <div className="container">

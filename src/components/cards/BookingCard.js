@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { currencyFormatter } from "../../actions/stripe";
 import { diffDays } from "../../actions/hotel";
-import { useHistory, Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
+
 import OrderModal from "../modals/OrderModal";
 
 const BookingCard = ({ hotel, session, orderedBy }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const history = useHistory();
+  // const history = useHistory();
   return (
     <>
       <div className="card mb-3">
@@ -17,13 +17,13 @@ const BookingCard = ({ hotel, session, orderedBy }) => {
             {hotel.image && hotel.image.contentType ? (
               <img
                 src={`${process.env.REACT_APP_API}/hotel/image/${hotel._id}`}
-                alt="default hotel image"
+                alt="default hotel view"
                 className="card-image img img-fluid"
               />
             ) : (
               <img
                 src="https://via.placeholder.com/900x500.png?text=MERN+Booking"
-                alt="default hotel image"
+                alt="default hotel view"
                 className="card-image img img-fluid"
               />
             )}

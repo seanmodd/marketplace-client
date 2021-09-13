@@ -18,13 +18,13 @@ const SmallCard = ({
             {h.image && h.image.contentType ? (
               <img
                 src={`${process.env.REACT_APP_API}/hotel/image/${h._id}`}
-                alt="default hotel image"
+                alt="default hotel view"
                 className="card-image img img-fluid"
               />
             ) : (
               <img
                 src="https://via.placeholder.com/900x500.png?text=MERN+Booking"
-                alt="default hotel image"
+                alt="default hotel view"
                 className="card-image img img-fluid"
               />
             )}
