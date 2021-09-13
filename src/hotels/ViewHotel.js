@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 // import { useStore } from "react-redux";
-import { read, diffDays, isAlreadyBooked } from "../actions/hotel";
-import { getSessionId } from "../actions/stripe";
-import moment from "moment";
-import { useSelector } from "react-redux";
-import { loadStripe } from "@stripe/stripe-js";
+import {read, diffDays, isAlreadyBooked} from '../actions/hotel';
+import {getSessionId} from '../actions/stripe';
+import moment from 'moment';
+import {useSelector} from 'react-redux';
+import {loadStripe} from '@stripe/stripe-js';
 
-const ViewHotel = ({ match, history }) => {
+const ViewHotel = ({match, history}) => {
   const [hotel, setHotel] = useState({});
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [alreadyBooked, setAlreadyBooked] = useState(false);
 
-  const { auth } = useSelector((state) => ({ ...state }));
+  const {auth} = useSelector((state) => ({...state}));
 
   useEffect(() => {
     loadSellerHotel();
@@ -28,7 +28,7 @@ const ViewHotel = ({ match, history }) => {
   }, [auth, match.params.hotelId]);
 
   const loadSellerHotel = async () => {
-    let res = await read(match.params.hotelId);
+    const res = await read(match.params.hotelId);
     // console.log(res);
     setHotel(res.data);
     setImage(`${process.env.REACT_APP_API}/hotel/image/${res.data._id}`);
@@ -38,21 +38,21 @@ const ViewHotel = ({ match, history }) => {
     e.preventDefault();
 
     if (!auth || !auth.token) {
-      history.push("/login");
+      history.push('/login');
       return;
     }
 
     setLoading(true);
-    if (!auth) history.push("/login");
+    if (!auth) history.push('/login');
     // console.log(auth.token, match.params.hotelId);
-    let res = await getSessionId(auth.token, match.params.hotelId);
+    const res = await getSessionId(auth.token, match.params.hotelId);
     // console.log("get sessionid resposne", res.data.sessionId);
     const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
     stripe
-      .redirectToCheckout({
-        sessionId: res.data.sessionId,
-      })
-      .then((result) => console.log(result));
+        .redirectToCheckout({
+          sessionId: res.data.sessionId,
+        })
+        .then((result) => console.log(result));
   };
 
   return (
@@ -73,17 +73,17 @@ const ViewHotel = ({ match, history }) => {
             <p className="alert alert-info mt-3">${hotel.price}</p>
             <p className="card-text">
               <span className="float-right text-primary">
-                for {diffDays(hotel.from, hotel.to)}{" "}
-                {diffDays(hotel.from, hotel.to) <= 1 ? " day" : " days"}
+                for {diffDays(hotel.from, hotel.to)}{' '}
+                {diffDays(hotel.from, hotel.to) <= 1 ? ' day' : ' days'}
               </span>
             </p>
             <p>
-              From <br />{" "}
-              {moment(new Date(hotel.from)).format("MMMM Do YYYY, h:mm:ss a")}
+              From <br />{' '}
+              {moment(new Date(hotel.from)).format('MMMM Do YYYY, h:mm:ss a')}
             </p>
             <p>
-              To <br />{" "}
-              {moment(new Date(hotel.to)).format("MMMM Do YYYY, h:mm:ss a")}
+              To <br />{' '}
+              {moment(new Date(hotel.to)).format('MMMM Do YYYY, h:mm:ss a')}
             </p>
             <i>Posted by {hotel.postedBy && hotel.postedBy.name}</i>
             <br />
@@ -92,13 +92,13 @@ const ViewHotel = ({ match, history }) => {
               className="btn btn-block btn-lg btn-primary mt-3"
               disabled={loading || alreadyBooked}
             >
-              {loading
-                ? "Loading..."
-                : alreadyBooked
-                ? "Already Booked"
-                : auth && auth.token
-                ? "Book Now"
-                : "Login to Book"}
+              {loading ?
+                'Loading...' :
+                alreadyBooked ?
+                'Already Booked' :
+                auth && auth.token ?
+                'Book Now' :
+                'Login to Book'}
             </button>
           </div>
         </div>

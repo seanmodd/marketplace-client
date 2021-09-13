@@ -1,7 +1,7 @@
-import { currencyFormatter } from "../../actions/stripe";
-import { diffDays } from "../../actions/hotel";
-import { useHistory, Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {currencyFormatter} from '../../actions/stripe';
+import {diffDays} from '../../actions/hotel';
+import {useHistory, Link} from 'react-router-dom';
+import {EditOutlined, DeleteOutlined} from '@ant-design/icons';
 
 const SmallCard = ({
   h,
@@ -32,20 +32,20 @@ const SmallCard = ({
           <div className="col-md-8">
             <div className="card-body">
               <h3 className="card-title">
-                {h.title}{" "}
+                {h.title}{' '}
                 <span className="float-right text-primary">
                   {currencyFormatter({
                     amount: h.price * 100,
-                    currency: "usd",
+                    currency: 'usd',
                   })}
-                </span>{" "}
+                </span>{' '}
               </h3>
               <p className="alert alert-info">{h.location}</p>
               <p className="card-text">{`${h.content.substring(1, 200)}...`}</p>
               <p className="card-text">
                 <span className="float-right text-primary">
-                  for {diffDays(h.from, h.to)}{" "}
-                  {diffDays(h.from, h.to) <= 1 ? " day" : " days"}
+                  for {diffDays(h.from, h.to)}{' '}
+                  {diffDays(h.from, h.to) <= 1 ? ' day' : ' days'}
                 </span>
               </p>
               <p className="card-text">{h.bed} bed</p>

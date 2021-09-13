@@ -1,13 +1,13 @@
-import AlgoliaPlaces from "algolia-places-react";
-import { DatePicker, Select } from "antd";
-import moment from "moment";
+import AlgoliaPlaces from 'algolia-places-react';
+import {DatePicker, Select} from 'antd';
+import moment from 'moment';
 
-const { Option } = Select;
+const {Option} = Select;
 
 const config = {
   appId: process.env.REACT_APP_ALGOLIA_APP_ID,
   apiKey: process.env.REACT_APP_ALGOLIA_API_KEY,
-  language: "en",
+  language: 'en',
   // countries: ["au"],
 };
 
@@ -18,7 +18,7 @@ const HotelEditForm = ({
   handleImageChange,
   handleSubmit,
 }) => {
-  const { title, content, location, price, bed, from, to } = values;
+  const {title, content, location, price, bed, from, to} = values;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -57,10 +57,10 @@ const HotelEditForm = ({
             placeholder="Location"
             defaultValue={location}
             options={config}
-            onChange={({ suggestion }) =>
-              setValues({ ...values, location: suggestion.value })
+            onChange={({suggestion}) =>
+              setValues({...values, location: suggestion.value})
             }
-            style={{ height: "50px" }}
+            style={{height: '50px'}}
           />
         )}
 
@@ -74,7 +74,7 @@ const HotelEditForm = ({
         />
 
         <Select
-          onChange={(value) => setValues({ ...values, bed: value })}
+          onChange={(value) => setValues({...values, bed: value})}
           className="w-100 m-2"
           size="large"
           placeholder="Number of seats"
@@ -89,28 +89,28 @@ const HotelEditForm = ({
 
       {from && (
         <DatePicker
-          defaultValue={moment(from, "YYYY-MM-DD")}
+          defaultValue={moment(from, 'YYYY-MM-DD')}
           placeholder="From date"
           className="form-control m-2"
           onChange={(date, dateString) =>
-            setValues({ ...values, from: dateString })
+            setValues({...values, from: dateString})
           }
           disabledDate={(current) =>
-            current && current.valueOf() < moment().subtract(1, "days")
+            current && current.valueOf() < moment().subtract(1, 'days')
           }
         />
       )}
 
       {to && (
         <DatePicker
-          defaultValue={moment(to, "YYYY-MM-DD")}
+          defaultValue={moment(to, 'YYYY-MM-DD')}
           placeholder="To date"
           className="form-control m-2"
           onChange={(date, dateString) =>
-            setValues({ ...values, to: dateString })
+            setValues({...values, to: dateString})
           }
           disabledDate={(current) =>
-            current && current.valueOf() < moment().subtract(1, "days")
+            current && current.valueOf() < moment().subtract(1, 'days')
           }
         />
       )}

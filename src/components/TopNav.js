@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import {Link} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 const TopNav = () => {
   const dispatch = useDispatch();
-  const { auth } = useSelector((state) => ({ ...state }));
+  const {auth} = useSelector((state) => ({...state}));
   const history = useHistory();
 
   const logout = () => {
     dispatch({
-      type: "LOGOUT",
+      type: 'LOGOUT',
       payload: null,
     });
-    window.localStorage.removeItem("auth");
-    history.push("/login");
+    window.localStorage.removeItem('auth');
+    history.push('/login');
   };
 
   return (

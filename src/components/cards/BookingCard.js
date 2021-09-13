@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { currencyFormatter } from "../../actions/stripe";
-import { diffDays } from "../../actions/hotel";
-import { useHistory } from "react-router-dom";
+import {useState} from 'react';
+import {currencyFormatter} from '../../actions/stripe';
+import {diffDays} from '../../actions/hotel';
+import {useHistory} from 'react-router-dom';
 
-import OrderModal from "../modals/OrderModal";
+import OrderModal from '../modals/OrderModal';
 
-const BookingCard = ({ hotel, session, orderedBy }) => {
+const BookingCard = ({hotel, session, orderedBy}) => {
   const [showModal, setShowModal] = useState(false);
 
   // const history = useHistory();
@@ -31,23 +31,23 @@ const BookingCard = ({ hotel, session, orderedBy }) => {
           <div className="col-md-8">
             <div className="card-body">
               <h3 className="card-title">
-                {hotel.title}{" "}
+                {hotel.title}{' '}
                 <span className="float-right text-primary">
                   {currencyFormatter({
                     amount: hotel.price * 100,
-                    currency: "usd",
+                    currency: 'usd',
                   })}
-                </span>{" "}
+                </span>{' '}
               </h3>
               <p className="alert alert-info">{hotel.location}</p>
               <p className="card-text">{`${hotel.content.substring(
-                1,
-                200
+                  1,
+                  200,
               )}...`}</p>
               <p className="card-text">
                 <span className="float-right text-primary">
-                  for {diffDays(hotel.from, hotel.to)}{" "}
-                  {diffDays(hotel.from, hotel.to) <= 1 ? " day" : " days"}
+                  for {diffDays(hotel.from, hotel.to)}{' '}
+                  {diffDays(hotel.from, hotel.to) <= 1 ? ' day' : ' days'}
                 </span>
               </p>
               <p className="card-text">{hotel.bed} seats</p>

@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import DashboardNav from "../components/DashboardNav";
-import ConnectNav from "../components/ConnectNav";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { HomeOutlined } from "@ant-design/icons";
-import { createConnectAccount } from "../actions/stripe";
-import { sellerHotels, deleteHotel } from "../actions/hotel";
-import { toast } from "react-toastify";
-import SmallCard from "../components/cards/SmallCard";
+import {useState, useEffect} from 'react';
+import DashboardNav from '../components/DashboardNav';
+import ConnectNav from '../components/ConnectNav';
+import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {HomeOutlined} from '@ant-design/icons';
+import {createConnectAccount} from '../actions/stripe';
+import {sellerHotels, deleteHotel} from '../actions/hotel';
+import {toast} from 'react-toastify';
+import SmallCard from '../components/cards/SmallCard';
 
 const DashboardSeller = () => {
-  const { auth } = useSelector((state) => ({ ...state }));
+  const {auth} = useSelector((state) => ({...state}));
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,27 +19,27 @@ const DashboardSeller = () => {
   }, [loadSellersHotels]);
 
   const loadSellersHotels = async () => {
-    let { data } = await sellerHotels(auth.token);
+    const {data} = await sellerHotels(auth.token);
     setHotels(data);
   };
 
   const handleClick = async () => {
     setLoading(true);
     try {
-      let res = await createConnectAccount(auth.token);
+      const res = await createConnectAccount(auth.token);
       console.log(res); // get login link
       window.location.href = res.data;
     } catch (err) {
       console.log(err);
-      toast.error("Stripe connect failed, Try again.");
+      toast.error('Stripe connect failed, Try again.');
       setLoading(false);
     }
   };
 
   const handleHotelDelete = async (hotelId) => {
-    if (!window.confirm("Are you sure?")) return;
+    if (!window.confirm('Are you sure?')) return;
     deleteHotel(auth.token, hotelId).then((res) => {
-      toast.success("Hotel Deleted");
+      toast.success('Hotel Deleted');
       loadSellersHotels();
     });
   };
@@ -87,7 +87,7 @@ const DashboardSeller = () => {
               onClick={handleClick}
               className="btn btn-primary mb-3"
             >
-              {loading ? "Processing..." : "Setup Payouts"}
+              {loading ? 'Processing...' : 'Setup Payouts'}
             </button>
             <p className="text-muted">
               <small>
@@ -114,9 +114,9 @@ const DashboardSeller = () => {
       {auth &&
       auth.user &&
       auth.user.stripe_seller &&
-      auth.user.stripe_seller.charges_enabled
-        ? connected()
-        : notConnected()}
+      auth.user.stripe_seller.charges_enabled ?
+        connected() :
+        notConnected()}
 
       {/* <pre>{JSON.stringify(auth, null, 4)}</pre> */}
     </>

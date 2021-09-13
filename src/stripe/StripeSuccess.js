@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { stripeSuccessRequest } from "../actions/stripe";
-import { LoadingOutlined } from "@ant-design/icons";
+import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {stripeSuccessRequest} from '../actions/stripe';
+import {LoadingOutlined} from '@ant-design/icons';
 
-const StripeCancel = ({ match, history }) => {
+const StripeCancel = ({match, history}) => {
   const {
-    auth: { token },
-  } = useSelector((state) => ({ ...state }));
+    auth: {token},
+  } = useSelector((state) => ({...state}));
   // const { token } = auth;
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const StripeCancel = ({ match, history }) => {
     stripeSuccessRequest(token, match.params.hotelId).then((res) => {
       if (res.data.success) {
         // console.log("stripe success response", res.data);
-        history.push("/dashboard");
+        history.push('/dashboard');
       } else {
-        history.push("/stripe/cancel");
+        history.push('/stripe/cancel');
       }
     });
   }, [history, token, match.params.hotelId]);

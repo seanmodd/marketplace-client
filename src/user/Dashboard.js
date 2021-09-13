@@ -1,15 +1,15 @@
-import DashboardNav from "../components/DashboardNav";
-import ConnectNav from "../components/ConnectNav";
-import { Link } from "react-router-dom";
-import { userHotelBookings } from "../actions/hotel";
-import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import BookingCard from "../components/cards/BookingCard";
+import DashboardNav from '../components/DashboardNav';
+import ConnectNav from '../components/ConnectNav';
+import {Link} from 'react-router-dom';
+import {userHotelBookings} from '../actions/hotel';
+import {useSelector} from 'react-redux';
+import {useState, useEffect} from 'react';
+import BookingCard from '../components/cards/BookingCard';
 
 const Dashboard = () => {
   const {
-    auth: { token },
-  } = useSelector((state) => ({ ...state }));
+    auth: {token},
+  } = useSelector((state) => ({...state}));
   const [booking, setBooking] = useState([]);
 
   useEffect(() => {
