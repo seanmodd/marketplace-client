@@ -18,7 +18,7 @@
         "react"
     ],
     "rules": {
-        "no-unused-vars": "false",
+        // "no-unused-vars": "false",
         "react/prop-types": "false",
         "react/jsx-uses-react": "false",
         "react-hooks/exhaustive-deps": "false",
