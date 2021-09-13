@@ -9,7 +9,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducers";
-
+import { ChakraProvider } from "@chakra-ui/react"
 // 2. create user reducer function
 // 3. combine multiple reducers
 // 4. create redux store
